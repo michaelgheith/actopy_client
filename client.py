@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+import argparse
 import json
 import random
 import time
@@ -46,7 +47,11 @@ class myClient():
         sock.close()
 
 
-
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="a bluetooth client")
+    #parser.add_argument("-v", "--verbose", help="turn on verbose mode", action="store_true")
+    parser.add_argument("-u", "--uuid", help="specify a uuid", default="1e0ca4ea-299d-4335-93eb-27fcfe7fa848")
+    args = parser.parse_args()
+
     client = myClient()
-    client.connect(uuid = "1e0ca4ea-299d-4335-93eb-27fcfe7fa848")
+    client.connect(uuid = args.uuid)
